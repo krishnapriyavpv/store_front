@@ -40,9 +40,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_front/controllers/menu_app_controller.dart';
+import 'package:store_front/screens/digital_marketing_page.dart';
+import 'package:store_front/screens/inventory_list_page.dart';
+import 'package:store_front/screens/profile_page.dart';
 import 'package:store_front/utils/responsive.dart';
 import 'package:store_front/screens/dashboard/dashboard_screen.dart';
-import 'package:store_front/screens/orders/orders_page.dart';
+import 'package:store_front/screens/orders_page.dart';
 
 import 'components/side_menu.dart';
 
@@ -50,10 +53,10 @@ class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
   @override
-  _MainScreenState createState() => _MainScreenState();
+  MainScreenState createState() => MainScreenState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
   void _onDrawerItemTapped(int index) {
@@ -87,11 +90,11 @@ class _MainScreenState extends State<MainScreen> {
                   DashboardScreen(),
                   OrdersPage(),
                   // Add other pages here
+                  InventoryPage(),
                   DashboardScreen(),
                   DashboardScreen(),
-                  DashboardScreen(),
-                  DashboardScreen(),
-                  DashboardScreen(),
+                  DigitalMarketingPage(),
+                  ProfilePage(),
                   DashboardScreen()
                 ],
               ),

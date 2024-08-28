@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:store_front/utils/responsive.dart';
 import 'package:store_front/screens/dashboard/components/my_fields.dart';
-
 import '../../utils/constants.dart';
 import 'components/header.dart';
-
 import 'components/recent_files.dart';
 import 'components/storage_details.dart';
 

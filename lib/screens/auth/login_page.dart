@@ -1,46 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_front/controllers/menu_app_controller.dart';
 import 'package:store_front/screens/auth/signup_page.dart';
 import 'package:store_front/screens/main/main_screen.dart';
 import 'package:store_front/utils/constants.dart';
-
-// class LoginPage extends StatefulWidget {
-//   const LoginPage({super.key});
-//   @override
-//   State<LoginPage> createState() => _LoginPageState();
-// }
-
-// class _LoginPageState extends State<LoginPage> {
-//    final TextEditingController _emailController = TextEditingController();
-//   final TextEditingController _passwordController = TextEditingController();
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Center(
-//         child: ElevatedButton(
-//             onPressed: () {
-//               Navigator.push(
-//                 context,
-//                 MaterialPageRoute(
-//                     builder: (context) => MultiProvider(
-//                           providers: [
-//                             ChangeNotifierProvider(
-//                               create: (context) => MenuAppController(),
-//                             ),
-//                           ],
-//                           child: const MainScreen(),
-//                         )),
-//               );
-//             },
-//             child: const Text("Login")),
-//       ),
-//     );
-//   }
-// }
-
-// ignore_for_file: avoid_print, use_build_context_synchronously
 
 class LogInPage extends StatefulWidget {
   const LogInPage({super.key});
@@ -53,8 +17,9 @@ class _LogInPageState extends State<LogInPage> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  String _loginMessage = '';
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  bool _isLoading = false; // To track loading state
 
   @override
   void dispose() {
@@ -62,6 +27,10 @@ class _LogInPageState extends State<LogInPage> {
     _passwordController.dispose();
     super.dispose();
   }
+
+  final RegExp emailRegex = RegExp(
+    r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -79,8 +48,6 @@ class _LogInPageState extends State<LogInPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Image.asset('images/name.png'),
-              // const SizedBox(height: 10),
               const SizedBox(
                 width: 296.88,
                 height: 69.39,
@@ -95,18 +62,6 @@ class _LogInPageState extends State<LogInPage> {
                   ),
                 ),
               ),
-              // Center(
-              //   child: Container(
-              //     width: 103.64,
-              //     height: 115.94,
-              //     decoration: const BoxDecoration(
-              //       image: DecorationImage(
-              //         image: AssetImage("images/girl.png"),
-              //         fit: BoxFit.cover,
-              //       ),
-              //     ),
-              //   ),
-              // ),
               const SizedBox(height: 20),
               Form(
                 key: _formKey,
@@ -118,14 +73,14 @@ class _LogInPageState extends State<LogInPage> {
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
                           borderSide: const BorderSide(
-                            color: primaryColor, // Set the border color
+                            color: primaryColor,
                           ),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
                           borderSide: const BorderSide(
-                            width: 2.5, // Set the border thickness
-                            color: primaryColor, // Set the border color
+                            width: 2.5,
+                            color: primaryColor,
                           ),
                         ),
                         contentPadding: const EdgeInsets.symmetric(
@@ -136,30 +91,27 @@ class _LogInPageState extends State<LogInPage> {
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Please enter your email';
+                        } else if (!emailRegex.hasMatch(value)) {
+                          return 'Please enter a valid email address';
                         }
                         return null;
                       },
                     ),
                     const SizedBox(height: 20),
-                    // CustomTextField(
-                    //     labelText: "Enter Your Password",
-                    //     errorText: "Enter Your Password",
-                    //     controller: _passwordController),
-
                     TextFormField(
                       controller: _passwordController,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
                           borderSide: const BorderSide(
-                            color: primaryColor, // Set the border color
+                            color: primaryColor,
                           ),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
                           borderSide: const BorderSide(
-                            width: 2.5, // Set the border thickness
-                            color: primaryColor, // Set the border color
+                            width: 2.5,
+                            color: primaryColor,
                           ),
                         ),
                         contentPadding: const EdgeInsets.symmetric(
@@ -180,92 +132,51 @@ class _LogInPageState extends State<LogInPage> {
               const SizedBox(height: 20),
               const Center(
                 child: Text(
-                  "Forgot Password ?",
+                  "Forgot Password?",
                   textAlign: TextAlign.center,
-                  // color: tertiaryColor,
-                  // size: 16,
-                  // fontFamily: 'Open Sans',
-                  // fontWeight: FontWeight.w600,
                 ),
               ),
               const SizedBox(height: 20),
               Center(
-                child: ElevatedButton(
-                    child: Text("Log In"),
-                    // color: primaryColor,
-                    // fixedSize: const Size(350, 50),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => MultiProvider(
-                                  providers: [
-                                    ChangeNotifierProvider(
-                                      create: (context) => MenuAppController(),
-                                    ),
-                                  ],
-                                  child: const MainScreen(),
-                                )),
-                      );
-                      // if (_formKey.currentState!.validate()) {
-                      //Authenticate
-                      // signInWithEmailAndPassword(
-                      //     context,
-                      //     _emailController.text.trim(),
-                      //     _passwordController.text.trim());
-                    }
-                    // },
-                    ),
-
-                //  ElevatedButton(
-                //   style: ElevatedButton.styleFrom(
-                //     shape: RoundedRectangleBorder(
-                //       borderRadius: BorderRadius.circular(13),
-                //     ),
-                //     backgroundColor: primaryColor,
-                //     foregroundColor: white,
-                //     fixedSize: const Size(350, 50),
-                //   ),
-                //   onPressed: () {
-                //     if (_formKey.currentState!.validate()) {
-                //       //Authenticate
-                //       signInWithEmailAndPassword(
-                //           context,
-                //           _emailController.text.trim(),
-                //           _passwordController.text.trim());
-                //     }
-                //   },
-                //   child: const Padding(
-                //     padding: EdgeInsets.all(16.0),
-                //     child: Text(
-                //       'Log In',
-                //       textAlign: TextAlign.center,
-                //       style: TextStyle(
-                //         color: white,
-                //         fontSize: 19.32,
-                //         fontFamily: 'Open Sans',
-                //         fontWeight: FontWeight.w600,
-                //         height: 0,
-                //       ),
-                //     ),
-                //   ),
-                // ),
+                child: _isLoading
+                    ? const CircularProgressIndicator() // Show loading indicator if loading
+                    : ElevatedButton(
+                        child: const Text("Log In"),
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            setState(() {
+                              _isLoading = true; // Start loading
+                            });
+                            try {
+                              await signInWithEmailAndPassword(
+                                context,
+                                _emailController.text.trim(),
+                                _passwordController.text.trim(),
+                              );
+                            } catch (e) {
+                              setState(() {
+                                _isLoading =
+                                    false; // Stop loading if error occurs
+                              });
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                      'Login failed: ${e.toString().split("] ")[1]}'),
+                                ),
+                              );
+                            }
+                          }
+                        },
+                      ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               const Center(
                 child: Text(
                   "or",
                   textAlign: TextAlign.center,
-                  // size: 16,
-                  // fontFamily: 'Open Sans',
-                  // fontWeight: FontWeight.w600,
                 ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               Center(
                 child: TextButton(
                   onPressed: () {
@@ -283,5 +194,30 @@ class _LogInPageState extends State<LogInPage> {
         ),
       ),
     );
+  }
+}
+
+Future<void> signInWithEmailAndPassword(
+    context, emailControllerText, passwordControllerText) async {
+  try {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: emailControllerText,
+      password: passwordControllerText,
+    );
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => MultiProvider(
+                providers: [
+                  ChangeNotifierProvider(
+                    create: (context) => MenuAppController(),
+                  ),
+                ],
+                child: const MainScreen(),
+              )),
+    );
+  } catch (e) {
+    throw e; // Re-throw error to catch in the UI
   }
 }

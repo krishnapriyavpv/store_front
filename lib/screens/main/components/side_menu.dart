@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:store_front/screens/auth/login_page.dart';
 
 class SideMenu extends StatelessWidget {
   const SideMenu({
@@ -28,17 +30,42 @@ class SideMenu extends StatelessWidget {
             svgSrc: "assets/icons/menu_tran.svg",
             press: () => onItemSelected(1),
           ),
-
           DrawerListTile(
-            title: "Dashboard",
-            svgSrc: "assets/icons/menu_dashboard.svg",
-            press: () => onItemSelected(0),
+            title: "Inventory List",
+            svgSrc: "assets/icons/menu_doc.svg",
+            press: () => onItemSelected(2),
           ),
-
           DrawerListTile(
-            title: "Dashboard",
+            title: "Report",
+            svgSrc: "assets/icons/menu_task.svg",
+            press: () => onItemSelected(3),
+          ),
+          DrawerListTile(
+            title: "Track Quantity",
+            svgSrc: "assets/icons/menu_store.svg",
+            press: () => onItemSelected(4),
+          ),
+          DrawerListTile(
+            title: "Social Media",
+            svgSrc: "assets/icons/menu_notification.svg",
+            press: () => onItemSelected(5),
+          ),
+          DrawerListTile(
+            title: "Profile",
+            svgSrc: "assets/icons/menu_profile.svg",
+            press: () => onItemSelected(6),
+          ),
+          DrawerListTile(
+            title: "Log Out",
             svgSrc: "assets/icons/menu_dashboard.svg",
-            press: () => onItemSelected(0),
+            press: () {
+              FirebaseAuth.instance.signOut();
+              Navigator.of(context).popUntil((route) => route.isFirst);
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const LogInPage()),
+              );
+            },
           ),
         ],
       ),
