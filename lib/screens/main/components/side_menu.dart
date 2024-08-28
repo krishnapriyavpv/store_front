@@ -4,12 +4,16 @@ import 'package:flutter_svg/flutter_svg.dart';
 class SideMenu extends StatelessWidget {
   const SideMenu({
     super.key,
+    required this.onItemSelected,
   });
+
+  final void Function(int) onItemSelected;
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
+        padding: EdgeInsets.zero,
         children: [
           DrawerHeader(
             child: Image.asset("assets/images/logo.png"),
@@ -17,43 +21,14 @@ class SideMenu extends StatelessWidget {
           DrawerListTile(
             title: "Dashboard",
             svgSrc: "assets/icons/menu_dashboard.svg",
-            press: () {},
+            press: () => onItemSelected(0),
           ),
           DrawerListTile(
-            title: "Transaction",
+            title: "Orders",
             svgSrc: "assets/icons/menu_tran.svg",
-            press: () {},
+            press: () => onItemSelected(1),
           ),
-          DrawerListTile(
-            title: "Task",
-            svgSrc: "assets/icons/menu_task.svg",
-            press: () {},
-          ),
-          DrawerListTile(
-            title: "Documents",
-            svgSrc: "assets/icons/menu_doc.svg",
-            press: () {},
-          ),
-          DrawerListTile(
-            title: "Store",
-            svgSrc: "assets/icons/menu_store.svg",
-            press: () {},
-          ),
-          DrawerListTile(
-            title: "Notification",
-            svgSrc: "assets/icons/menu_notification.svg",
-            press: () {},
-          ),
-          DrawerListTile(
-            title: "Profile",
-            svgSrc: "assets/icons/menu_profile.svg",
-            press: () {},
-          ),
-          DrawerListTile(
-            title: "Settings",
-            svgSrc: "assets/icons/menu_setting.svg",
-            press: () {},
-          ),
+          // Add other menu items here
         ],
       ),
     );
@@ -63,7 +38,6 @@ class SideMenu extends StatelessWidget {
 class DrawerListTile extends StatelessWidget {
   const DrawerListTile({
     super.key,
-    // For selecting those three line once press "Command+D"
     required this.title,
     required this.svgSrc,
     required this.press,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:store_front/screens/auth/login_page.dart';
 import 'package:store_front/utils/constants.dart';
 import 'package:store_front/controllers/menu_app_controller.dart';
 import 'package:store_front/screens/main/main_screen.dart';
@@ -24,14 +25,16 @@ class MyApp extends StatelessWidget {
             .apply(bodyColor: Colors.white),
         canvasColor: secondaryColor,
       ),
-      home: MultiProvider(
-        providers: [
-          ChangeNotifierProvider(
-            create: (context) => MenuAppController(),
-          ),
-        ],
-        child: const MainScreen(),
-      ),
+      home: const LoginPage(),
+
+      //  MultiProvider(
+      //   providers: [
+      //     ChangeNotifierProvider(
+      //       create: (context) => MenuAppController(),
+      //     ),
+      //   ],
+      //   child: const MainScreen(),
+      // ),
     );
   }
 }

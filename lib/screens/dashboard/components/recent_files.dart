@@ -21,7 +21,7 @@ class RecentFiles extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Recent Files",
+            "Recent Orders",
             style: Theme.of(context).textTheme.titleMedium,
           ),
           SizedBox(

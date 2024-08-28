@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:store_front/models/my_files.dart';
@@ -50,68 +49,68 @@ class FileInfoCard extends StatelessWidget {
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
-          ProgressLine(
-            color: info.color,
-            percentage: info.percentage,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "${info.numOfFiles} Files",
-                style: Theme.of(context)
-                    .textTheme
-                    .bodySmall!
-                    .copyWith(color: Colors.white70),
-              ),
-              Text(
-                info.totalStorage!,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodySmall!
-                    .copyWith(color: Colors.white),
-              ),
-            ],
-          )
+          // ProgressLine(
+          //   color: info.color,
+          //   percentage: info.percentage,
+          // ),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //   children: [
+          //     Text(
+          //       "${info.numOfFiles} Files",
+          //       style: Theme.of(context)
+          //           .textTheme
+          //           .bodySmall!
+          //           .copyWith(color: Colors.white70),
+          //     ),
+          //     Text(
+          //       info.totalStorage!,
+          //       style: Theme.of(context)
+          //           .textTheme
+          //           .bodySmall!
+          //           .copyWith(color: Colors.white),
+          //     ),
+          //   ],
+          // )
         ],
       ),
     );
   }
 }
 
-class ProgressLine extends StatelessWidget {
-  const ProgressLine({
-    super.key,
-    this.color = primaryColor,
-    required this.percentage,
-  });
+// class ProgressLine extends StatelessWidget {
+//   const ProgressLine({
+//     super.key,
+//     this.color = primaryColor,
+//     required this.percentage,
+//   });
 
-  final Color? color;
-  final int? percentage;
+//   final Color? color;
+//   final int? percentage;
 
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          width: double.infinity,
-          height: 5,
-          decoration: BoxDecoration(
-            color: color!.withOpacity(0.1),
-            borderRadius: const BorderRadius.all(Radius.circular(10)),
-          ),
-        ),
-        LayoutBuilder(
-          builder: (context, constraints) => Container(
-            width: constraints.maxWidth * (percentage! / 100),
-            height: 5,
-            decoration: BoxDecoration(
-              color: color,
-              borderRadius: const BorderRadius.all(Radius.circular(10)),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Stack(
+//       children: [
+//         Container(
+//           width: double.infinity,
+//           height: 5,
+//           decoration: BoxDecoration(
+//             color: color!.withOpacity(0.1),
+//             borderRadius: const BorderRadius.all(Radius.circular(10)),
+//           ),
+//         ),
+//         LayoutBuilder(
+//           builder: (context, constraints) => Container(
+//             width: constraints.maxWidth * (percentage! / 100),
+//             height: 5,
+//             decoration: BoxDecoration(
+//               color: color,
+//               borderRadius: const BorderRadius.all(Radius.circular(10)),
+//             ),
+//           ),
+//         ),
+//       ],
+//     );
+//   }
+// }
