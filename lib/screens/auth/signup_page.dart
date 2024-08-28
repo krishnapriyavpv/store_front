@@ -80,6 +80,9 @@ class _SignUpPageState extends State<SignUpPage> {
                   return null;
                 },
               ),
+              SizedBox(
+                height: 20,
+              ),
               TextFormField(
                 // controller: controller,
 
@@ -96,7 +99,18 @@ class _SignUpPageState extends State<SignUpPage> {
                   }
                   return null;
                 },
-              )
+              ),
+              SizedBox(height: 30),
+              Transform.scale(
+                scale: 1.5, // Adjust this value to scale the button diagonally
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Action to perform when the button is pressed
+                    print('Submit button pressed');
+                  },
+                  child: Text('Next'),
+                ),
+              ),
             ],
           ),
         ),
