@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:store_front/screens/auth/login_page.dart';
 import 'package:store_front/utils/constants.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:store_front/utils/responsive.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -39,113 +40,128 @@ class _SignUpPageState extends State<SignUpPage> {
           padding: const EdgeInsets.all(25),
           child: Form(
             key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextFormField(
-                  decoration: InputDecoration(
-                    labelText: "User Name",
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.5),
-                  ),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return "Enter user name";
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  controller: _emailController,
-                  decoration: InputDecoration(
-                    labelText: "User Email",
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                      borderSide: const BorderSide(
-                        color: primaryColor, // Set the border color
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: Responsive.isMobile(context) ? double.infinity : 400,
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        labelText: "User Name",
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        filled: true,
+                        fillColor: Colors.white.withOpacity(0.5),
                       ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                      borderSide: const BorderSide(
-                        width: 2.5, // Set the border thickness
-                        color: primaryColor, // Set the border color
-                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Enter user name";
+                        }
+                        return null;
+                      },
                     ),
                   ),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return "Enter email id";
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  controller: _passwordController,
-                  decoration: InputDecoration(
-                    labelText: "Password",
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.5),
+                  const SizedBox(
+                    height: 20,
                   ),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return "Enter valid password";
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  decoration: InputDecoration(
-                    labelText: "Confirm Password",
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.5),
+                  SizedBox(
+                    width: Responsive.isMobile(context) ? double.infinity : 400,
+                    child: TextFormField(
+                      controller: _emailController,
+                      decoration: InputDecoration(
+                        labelText: "User Email",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          borderSide: const BorderSide(
+                            color: primaryColor, // Set the border color
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          borderSide: const BorderSide(
+                            width: 2.5, // Set the border thickness
+                            color: primaryColor, // Set the border color
+                          ),
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Enter email id";
+                        }
+                        return null;
+                      },
+                    ),
                   ),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return "Enter Password";
-                    }
-                    if (value != _passwordController.text) {
-                      return "Passwords do not match";
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 30),
-                ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const SignUpPage2(),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
+                    width: Responsive.isMobile(context) ? double.infinity : 400,
+                    child: TextFormField(
+                      controller: _passwordController,
+                      decoration: InputDecoration(
+                        labelText: "Password",
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        filled: true,
+                        fillColor: Colors.white.withOpacity(0.5),
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Enter valid password";
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
+                      width:
+                          Responsive.isMobile(context) ? double.infinity : 400,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          labelText: "Confirm Password",
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          filled: true,
+                          fillColor: Colors.white.withOpacity(0.5),
                         ),
-                      );
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Please fill in all fields correctly'),
-                        ),
-                      );
-                    }
-                  },
-                  child: const Text('Next'),
-                ),
-              ],
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Enter Password";
+                          }
+                          if (value != _passwordController.text) {
+                            return "Passwords do not match";
+                          }
+                          return null;
+                        },
+                      )),
+                  const SizedBox(height: 30),
+                  ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SignUpPage2(),
+                          ),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content:
+                                Text('Please fill in all fields correctly'),
+                          ),
+                        );
+                      }
+                    },
+                    child: const Text('Next'),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -195,104 +211,119 @@ class _SignUpPage2State extends State<SignUpPage2> {
           padding: const EdgeInsets.all(25),
           child: Form(
             key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextFormField(
-                  controller: _storeNameController,
-                  decoration: InputDecoration(
-                    labelText: "Store Name",
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.5),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: Responsive.isMobile(context) ? double.infinity : 400,
+                    child: TextFormField(
+                      controller: _storeNameController,
+                      decoration: InputDecoration(
+                        labelText: "Store Name",
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        filled: true,
+                        fillColor: Colors.white.withOpacity(0.5),
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Enter Store name";
+                        }
+                        return null;
+                      },
+                    ),
                   ),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return "Enter Store name";
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 20),
-                TextFormField(
-                  controller: _businessTypeController,
-                  decoration: InputDecoration(
-                    labelText: "Business Type",
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.5),
-                  ),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return "Enter Business type";
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 20),
-                TextFormField(
-                  controller: _businessAddressController,
-                  decoration: InputDecoration(
-                    labelText: "Business Address",
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.5),
-                  ),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return "Enter Business address";
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 20),
-                TextFormField(
-                  controller: _taxIdController,
-                  decoration: InputDecoration(
-                    labelText: "Tax ID",
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.5),
-                  ),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return "Enter Tax ID";
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 30),
-                ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      setState(() {
-                        _isLoading = true;
-                      });
-
-                      // Simulate QR code generation delay
-                      Future.delayed(const Duration(seconds: 2), () {
-                        setState(() {
-                          _qrData =
-                              "https://customer-storefront.web.app/search=${_storeNameController.text}";
-                          _isLoading = false;
-                        });
-                        _showQRCodeDialog(context);
-                      });
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Please fill in all fields correctly'),
+                  const SizedBox(height: 20),
+                  SizedBox(
+                      width:
+                          Responsive.isMobile(context) ? double.infinity : 400,
+                      child: TextFormField(
+                        controller: _businessTypeController,
+                        decoration: InputDecoration(
+                          labelText: "Business Type",
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          filled: true,
+                          fillColor: Colors.white.withOpacity(0.5),
                         ),
-                      );
-                    }
-                  },
-                  child: const Text('Sign Up'),
-                ),
-              ],
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Enter Business type";
+                          }
+                          return null;
+                        },
+                      )),
+                  const SizedBox(height: 20),
+                  SizedBox(
+                      width:
+                          Responsive.isMobile(context) ? double.infinity : 400,
+                      child: TextFormField(
+                        controller: _businessAddressController,
+                        decoration: InputDecoration(
+                          labelText: "Business Address",
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          filled: true,
+                          fillColor: Colors.white.withOpacity(0.5),
+                        ),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Enter Business address";
+                          }
+                          return null;
+                        },
+                      )),
+                  const SizedBox(height: 20),
+                  SizedBox(
+                    width: Responsive.isMobile(context) ? double.infinity : 400,
+                    child: TextFormField(
+                      controller: _taxIdController,
+                      decoration: InputDecoration(
+                        labelText: "Tax ID",
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        filled: true,
+                        fillColor: Colors.white.withOpacity(0.5),
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Enter Tax ID";
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  const SizedBox(height: 30),
+                  ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        setState(() {
+                          _isLoading = true;
+                        });
+
+                        // Simulate QR code generation delay
+                        Future.delayed(const Duration(seconds: 2), () {
+                          setState(() {
+                            _qrData =
+                                "https://customer-storefront.web.app/search=${_storeNameController.text}";
+                            _isLoading = false;
+                          });
+                          _showQRCodeDialog(context);
+                        });
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content:
+                                Text('Please fill in all fields correctly'),
+                          ),
+                        );
+                      }
+                    },
+                    child: const Text('Sign Up'),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

@@ -5,6 +5,7 @@ import 'package:store_front/controllers/menu_app_controller.dart';
 import 'package:store_front/screens/auth/signup_page.dart';
 import 'package:store_front/screens/main/main_screen.dart';
 import 'package:store_front/utils/constants.dart';
+import 'package:store_front/utils/responsive.dart';
 
 class LogInPage extends StatefulWidget {
   const LogInPage({super.key});
@@ -46,10 +47,10 @@ class _LogInPageState extends State<LogInPage> {
           padding: const EdgeInsets.all(25),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(
-                width: 296.88,
+                width: 280.88,
                 height: 69.39,
                 child: Text(
                   'Log In',
@@ -67,64 +68,72 @@ class _LogInPageState extends State<LogInPage> {
                 key: _formKey,
                 child: Column(
                   children: [
-                    TextFormField(
-                      controller: _emailController,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                          borderSide: const BorderSide(
-                            color: primaryColor,
+                    SizedBox(
+                      width:
+                          Responsive.isMobile(context) ? double.infinity : 400,
+                      child: TextFormField(
+                        controller: _emailController,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: const BorderSide(
+                              color: primaryColor,
+                            ),
                           ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                          borderSide: const BorderSide(
-                            width: 2.5,
-                            color: primaryColor,
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: const BorderSide(
+                              width: 2.5,
+                              color: primaryColor,
+                            ),
                           ),
+                          contentPadding: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 15),
+                          hintText: "Enter Your Email ID",
+                          alignLabelWithHint: true,
                         ),
-                        contentPadding: const EdgeInsets.symmetric(
-                            vertical: 10, horizontal: 15),
-                        hintText: "Enter Your Email ID",
-                        alignLabelWithHint: true,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please enter your email';
+                          } else if (!emailRegex.hasMatch(value)) {
+                            return 'Please enter a valid email address';
+                          }
+                          return null;
+                        },
                       ),
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please enter your email';
-                        } else if (!emailRegex.hasMatch(value)) {
-                          return 'Please enter a valid email address';
-                        }
-                        return null;
-                      },
                     ),
                     const SizedBox(height: 20),
-                    TextFormField(
-                      controller: _passwordController,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                          borderSide: const BorderSide(
-                            color: primaryColor,
+                    SizedBox(
+                      width:
+                          Responsive.isMobile(context) ? double.infinity : 400,
+                      child: TextFormField(
+                        controller: _passwordController,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: const BorderSide(
+                              color: primaryColor,
+                            ),
                           ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                          borderSide: const BorderSide(
-                            width: 2.5,
-                            color: primaryColor,
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: const BorderSide(
+                              width: 2.5,
+                              color: primaryColor,
+                            ),
                           ),
+                          contentPadding: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 15),
+                          hintText: "Enter Your Password",
+                          alignLabelWithHint: true,
                         ),
-                        contentPadding: const EdgeInsets.symmetric(
-                            vertical: 10, horizontal: 15),
-                        hintText: "Enter Your Password",
-                        alignLabelWithHint: true,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Enter Your Password';
+                          }
+                          return null;
+                        },
                       ),
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Enter Your Password';
-                        }
-                        return null;
-                      },
                     ),
                   ],
                 ),
