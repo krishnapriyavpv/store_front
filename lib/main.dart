@@ -25,8 +25,7 @@ class MyApp extends StatelessWidget {
             .apply(bodyColor: Colors.white),
         canvasColor: secondaryColor,
       ),
-      home: const LoginPage(),
-
+      home: const LogInPage(),
       //  MultiProvider(
       //   providers: [
       //     ChangeNotifierProvider(

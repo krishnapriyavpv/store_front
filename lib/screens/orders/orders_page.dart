@@ -10,6 +10,11 @@ class OrdersPage extends StatefulWidget {
 class _OrdersPageState extends State<OrdersPage> {
   @override
   Widget build(BuildContext context) {
-    return const Text("Orders Page");
+    return Container(
+        color: Colors.white,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [Text("Orders Page"), Text("hi")],
+        ));
   }
 }

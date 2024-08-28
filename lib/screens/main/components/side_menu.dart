@@ -28,7 +28,18 @@ class SideMenu extends StatelessWidget {
             svgSrc: "assets/icons/menu_tran.svg",
             press: () => onItemSelected(1),
           ),
-          // Add other menu items here
+
+          DrawerListTile(
+            title: "Dashboard",
+            svgSrc: "assets/icons/menu_dashboard.svg",
+            press: () => onItemSelected(0),
+          ),
+
+          DrawerListTile(
+            title: "Dashboard",
+            svgSrc: "assets/icons/menu_dashboard.svg",
+            press: () => onItemSelected(0),
+          ),
         ],
       ),
     );

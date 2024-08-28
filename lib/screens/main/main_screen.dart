@@ -83,16 +83,16 @@ class _MainScreenState extends State<MainScreen> {
               flex: 5,
               child: IndexedStack(
                 index: _selectedIndex,
-                children: [
-                  const DashboardScreen(),
-                  const OrdersPage(),
+                children: const [
+                  DashboardScreen(),
+                  OrdersPage(),
                   // Add other pages here
-                  const DashboardScreen(),
-                  const DashboardScreen(),
-                  const DashboardScreen(),
-                  const DashboardScreen(),
-                  const DashboardScreen(),
-                  const DashboardScreen()
+                  DashboardScreen(),
+                  DashboardScreen(),
+                  DashboardScreen(),
+                  DashboardScreen(),
+                  DashboardScreen(),
+                  DashboardScreen()
                 ],
               ),
             ),
